@@ -1,0 +1,1520 @@
+/* ==========================================================================
+   SplyGo - Comprehensive 5-Theme Design System & Interactive HUD Stylesheet
+   ========================================================================== */
+
+/* --- Root Token Defaults (Fallback: Gaming) --- */
+:root {
+  --sply-bg: #0b0c10;
+  --sply-bg-subtle: #12141c;
+  --sply-surface: #161a23;
+  --sply-surface-card: #1f2833;
+  --sply-surface-elevated: #283342;
+  --sply-border: rgba(57, 255, 20, 0.3);
+  --sply-border-hover: #39ff14;
+  --sply-primary: #39ff14;
+  --sply-primary-rgb: 57, 255, 20;
+  --sply-secondary: #ff007f;
+  --sply-secondary-rgb: 255, 0, 127;
+  --sply-accent: #00f0ff;
+  --sply-accent-gold: #ffe600;
+  --sply-text: #f0f6fc;
+  --sply-text-muted: #8b949e;
+  --sply-text-dim: #545d68;
+  --sply-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --sply-glow: 0 0 15px rgba(57, 255, 20, 0.4);
+  --sply-radius: 8px;
+  --sply-radius-sm: 4px;
+  --sply-radius-pill: 9999px;
+  --sply-font-heading: 'Orbitron', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sply-font-body: 'Chakra Petch', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sply-font-mono: 'Share Tech Mono', monospace;
+  --sply-map-filter: contrast(1.15) brightness(0.85) saturate(1.2);
+  --sply-trans-speed: 200ms;
+}
+
+/* --- 1. GAMING THEME --- */
+body.theme-gaming {
+  --sply-bg: #0b0c10;
+  --sply-bg-subtle: #131722;
+  --sply-surface: #161a23;
+  --sply-surface-card: #1f2833;
+  --sply-surface-elevated: #293544;
+  --sply-border: rgba(57, 255, 20, 0.35);
+  --sply-border-hover: #39ff14;
+  --sply-primary: #39ff14;
+  --sply-primary-rgb: 57, 255, 20;
+  --sply-secondary: #ff007f;
+  --sply-secondary-rgb: 255, 0, 127;
+  --sply-accent: #00f0ff;
+  --sply-accent-gold: #ffe600;
+  --sply-text: #ffffff;
+  --sply-text-muted: #95a2b5;
+  --sply-text-dim: #5c6878;
+  --sply-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9);
+  --sply-glow: 0 0 16px rgba(57, 255, 20, 0.5);
+  --sply-radius: 6px;
+  --sply-radius-sm: 3px;
+  --sply-radius-pill: 6px;
+  --sply-font-heading: 'Orbitron', sans-serif;
+  --sply-font-body: 'Chakra Petch', sans-serif;
+  --sply-font-mono: 'Share Tech Mono', monospace;
+  --sply-map-filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* --- 2. AESTHETIC THEME --- */
+body.theme-aesthetic {
+  --sply-bg: #faf7f2;
+  --sply-bg-subtle: #f3eee5;
+  --sply-surface: #ffffff;
+  --sply-surface-card: #ffffff;
+  --sply-surface-elevated: #fffcf9;
+  --sply-border: rgba(232, 165, 152, 0.35);
+  --sply-border-hover: #e8a598;
+  --sply-primary: #d9826c;
+  --sply-primary-rgb: 217, 130, 108;
+  --sply-secondary: #8fae8f;
+  --sply-secondary-rgb: 143, 174, 143;
+  --sply-accent: #c09bd8;
+  --sply-accent-gold: #d4a373;
+  --sply-text: #2d2926;
+  --sply-text-muted: #786f68;
+  --sply-text-dim: #aba29a;
+  --sply-shadow: 0 12px 36px rgba(217, 130, 108, 0.12);
+  --sply-glow: 0 6px 20px rgba(217, 130, 108, 0.25);
+  --sply-radius: 20px;
+  --sply-radius-sm: 12px;
+  --sply-radius-pill: 9999px;
+  --sply-font-heading: 'Playfair Display', serif;
+  --sply-font-body: 'Plus Jakarta Sans', sans-serif;
+  --sply-font-mono: 'Plus Jakarta Sans', monospace;
+  --sply-map-filter: sepia(25%) saturate(85%) contrast(95%);
+}
+
+/* --- 3. MINIMALIST THEME --- */
+body.theme-minimalist {
+  --sply-bg: #ffffff;
+  --sply-bg-subtle: #f7f7f8;
+  --sply-surface: #ffffff;
+  --sply-surface-card: #f8f9fa;
+  --sply-surface-elevated: #f1f3f5;
+  --sply-border: #000000;
+  --sply-border-hover: #000000;
+  --sply-primary: #000000;
+  --sply-primary-rgb: 0, 0, 0;
+  --sply-secondary: #495057;
+  --sply-secondary-rgb: 73, 80, 87;
+  --sply-accent: #212529;
+  --sply-accent-gold: #343a40;
+  --sply-text: #000000;
+  --sply-text-muted: #555555;
+  --sply-text-dim: #888888;
+  --sply-shadow: 2px 2px 0px #000000;
+  --sply-glow: none;
+  --sply-radius: 0px;
+  --sply-radius-sm: 0px;
+  --sply-radius-pill: 0px;
+  --sply-font-heading: 'Inter', sans-serif;
+  --sply-font-body: 'Inter', sans-serif;
+  --sply-font-mono: 'JetBrains Mono', monospace;
+  --sply-map-filter: grayscale(100%) contrast(110%);
+}
+
+/* --- 4. PROFESSIONAL THEME --- */
+body.theme-professional {
+  --sply-bg: #0b132b;
+  --sply-bg-subtle: #101c3d;
+  --sply-surface: #142247;
+  --sply-surface-card: #1c2b53;
+  --sply-surface-elevated: #233463;
+  --sply-border: rgba(96, 165, 250, 0.28);
+  --sply-border-hover: #3b82f6;
+  --sply-primary: #3b82f6;
+  --sply-primary-rgb: 59, 130, 246;
+  --sply-secondary: #10b981;
+  --sply-secondary-rgb: 16, 185, 129;
+  --sply-accent: #f59e0b;
+  --sply-accent-gold: #fbbf24;
+  --sply-text: #f8fafc;
+  --sply-text-muted: #94a3b8;
+  --sply-text-dim: #64748b;
+  --sply-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --sply-glow: 0 0 12px rgba(59, 130, 246, 0.35);
+  --sply-radius: 8px;
+  --sply-radius-sm: 4px;
+  --sply-radius-pill: 9999px;
+  --sply-font-heading: 'Roboto', sans-serif;
+  --sply-font-body: 'IBM Plex Sans', sans-serif;
+  --sply-font-mono: 'IBM Plex Mono', monospace;
+  --sply-map-filter: brightness(85%) contrast(105%) hue-rotate(190deg);
+}
+
+/* --- 5. FUTURISTIC / CYBERPUNK THEME --- */
+body.theme-cyberpunk {
+  --sply-bg: #05050a;
+  --sply-bg-subtle: #0b0c16;
+  --sply-surface: #0f1020;
+  --sply-surface-card: #15162c;
+  --sply-surface-elevated: #1e203c;
+  --sply-border: rgba(0, 245, 255, 0.4);
+  --sply-border-hover: #00f5ff;
+  --sply-primary: #00f5ff;
+  --sply-primary-rgb: 0, 245, 255;
+  --sply-secondary: #9d4edd;
+  --sply-secondary-rgb: 157, 78, 221;
+  --sply-accent: #ff0055;
+  --sply-accent-gold: #ffe600;
+  --sply-text: #ffffff;
+  --sply-text-muted: #9ba1c2;
+  --sply-text-dim: #656b8f;
+  --sply-shadow: 0 0 24px rgba(157, 78, 221, 0.35);
+  --sply-glow: 0 0 18px rgba(0, 245, 255, 0.6);
+  --sply-radius: 2px;
+  --sply-radius-sm: 1px;
+  --sply-radius-pill: 2px;
+  --sply-font-heading: 'Share Tech Mono', monospace;
+  --sply-font-body: 'Rajdhani', sans-serif;
+  --sply-font-mono: 'Share Tech Mono', monospace;
+  --sply-map-filter: invert(100%) hue-rotate(160deg) contrast(120%) brightness(90%);
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--sply-bg);
+  color: var(--sply-text);
+  font-family: var(--sply-font-body);
+  transition: background-color 250ms ease, color 250ms ease;
+  font-size: 14px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all var(--sply-trans-speed) ease;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--sply-primary);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Layout Architecture
+   ========================================================================== */
+.sply-app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Header / Top Bar --- */
+.sply-header {
+  height: 64px;
+  background-color: var(--sply-surface);
+  border-bottom: 1px solid var(--sply-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color 250ms ease, border-color 250ms ease;
+}
+
+.sply-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sply-logo-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--sply-radius);
+  background: linear-gradient(135deg, var(--sply-primary), var(--sply-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 1.25rem;
+  font-family: var(--sply-font-heading);
+  box-shadow: var(--sply-glow);
+  letter-spacing: -1px;
+}
+
+.sply-brand-text h1 {
+  font-size: 1.3rem;
+  font-family: var(--sply-font-heading);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sply-brand-text h1 span {
+  color: var(--sply-primary);
+}
+
+.sply-brand-text p {
+  font-size: 0.75rem;
+  color: var(--sply-text-muted);
+  white-space: nowrap;
+}
+
+/* --- 5-Theme Switcher Bar --- */
+.sply-theme-bar {
+  display: flex;
+  align-items: center;
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius-pill);
+  padding: 3px;
+  gap: 3px;
+}
+
+.theme-pill-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--sply-radius-pill);
+  background: transparent;
+  color: var(--sply-text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 200ms ease;
+}
+
+.theme-pill-btn:hover {
+  color: var(--sply-text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.theme-pill-btn.active {
+  background: var(--sply-primary);
+  color: #0b0c10;
+  box-shadow: var(--sply-glow);
+  font-weight: 700;
+}
+
+body.theme-aesthetic .theme-pill-btn.active,
+body.theme-minimalist .theme-pill-btn.active {
+  color: #ffffff;
+}
+
+.theme-pill-btn .pill-icon {
+  font-size: 1rem;
+}
+
+/* --- Header Right: Auth, Weather & Quick Actions --- */
+.sply-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Weather Pulse Badge (OpenWeatherMap) */
+.sply-weather-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius-pill);
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--sply-text);
+  font-family: var(--sply-font-mono);
+  box-shadow: var(--sply-glow);
+  cursor: pointer;
+  transition: all 200ms ease;
+  white-space: nowrap;
+}
+
+.sply-weather-badge:hover {
+  border-color: var(--sply-border-hover);
+  transform: translateY(-1px);
+}
+
+.sply-weather-badge .weather-icon {
+  font-size: 1rem;
+}
+
+.sply-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--sply-radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--sply-trans-speed) ease;
+}
+
+.sply-btn-primary {
+  background: var(--sply-primary);
+  color: #0b0c10;
+  box-shadow: var(--sply-glow);
+}
+
+body.theme-aesthetic .sply-btn-primary,
+body.theme-minimalist .sply-btn-primary {
+  color: #ffffff;
+}
+
+.sply-btn-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.sply-btn-secondary {
+  background: var(--sply-surface-card);
+  color: var(--sply-text);
+  border: 1px solid var(--sply-border);
+}
+
+.sply-btn-secondary:hover {
+  border-color: var(--sply-border-hover);
+  background: var(--sply-surface-elevated);
+}
+
+.sply-btn-danger {
+  background: rgba(255, 0, 85, 0.15);
+  color: #ff0055;
+  border: 1px solid rgba(255, 0, 85, 0.4);
+}
+
+.sply-btn-danger:hover {
+  background: #ff0055;
+  color: #ffffff;
+}
+
+/* User Profile Badge */
+.sply-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius-pill);
+  padding: 4px 12px 4px 5px;
+  cursor: pointer;
+  transition: border-color var(--sply-trans-speed);
+}
+
+.sply-user-pill:hover {
+  border-color: var(--sply-border-hover);
+}
+
+.user-avatar-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--sply-primary);
+}
+
+.user-pill-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.user-pill-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sply-text);
+}
+
+.user-pill-status {
+  font-size: 0.68rem;
+  color: var(--sply-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Map & HUD Canvas
+   ========================================================================== */
+.sply-viewport {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+/* Map Container */
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: var(--sply-bg);
+  filter: var(--sply-map-filter);
+  transition: filter 300ms ease;
+}
+
+/* Fallback / Interactive SVG Grid if map tiles offline */
+.map-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.15;
+  background-image: 
+    linear-gradient(to right, var(--sply-primary) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sply-primary) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+body.theme-minimalist .map-grid-overlay,
+body.theme-aesthetic .map-grid-overlay {
+  display: none;
+}
+
+/* ==========================================================================
+   Floating HUD Panels
+   ========================================================================== */
+
+/* --- HUD Left Panel: Search, Categories, Budget & Controls --- */
+.hud-panel-left {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 360px;
+  max-height: calc(100% - 100px);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.hud-card {
+  background: var(--sply-surface);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+  padding: 16px;
+  box-shadow: var(--sply-shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+/* Search Bar */
+.hud-search-box {
+  display: flex;
+  align-items: center;
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+  padding: 8px 12px;
+  gap: 10px;
+  transition: border-color 150ms ease;
+}
+
+.hud-search-box:focus-within {
+  border-color: var(--sply-primary);
+  box-shadow: var(--sply-glow);
+}
+
+.hud-search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--sply-text);
+}
+
+.hud-search-box .search-icon {
+  font-size: 1rem;
+  color: var(--sply-text-muted);
+}
+
+/* Category Filter Tags */
+.hud-category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.cat-chip {
+  padding: 5px 11px;
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sply-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cat-chip:hover {
+  border-color: var(--sply-border-hover);
+  color: var(--sply-text);
+}
+
+.cat-chip.active {
+  background: var(--sply-primary);
+  border-color: var(--sply-primary);
+  color: #0b0c10;
+  font-weight: 700;
+}
+
+body.theme-aesthetic .cat-chip.active,
+body.theme-minimalist .cat-chip.active {
+  color: #ffffff;
+}
+
+/* Budget vs Luxury Dynamic Slider */
+.hud-slider-group {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--sply-border);
+}
+
+.slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--sply-text-muted);
+  margin-bottom: 6px;
+}
+
+.budget-val-badge {
+  font-weight: 700;
+  color: var(--sply-primary);
+  font-family: var(--sply-font-mono);
+}
+
+.sply-range-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 4px;
+  background: var(--sply-bg-subtle);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.sply-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--sply-primary);
+  cursor: pointer;
+  box-shadow: var(--sply-glow);
+  transition: transform 150ms;
+}
+
+.sply-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Layer Toggles & Mode Bar */
+.hud-toggles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.layer-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--sply-radius);
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  color: var(--sply-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.layer-toggle-btn:hover {
+  color: var(--sply-text);
+  border-color: var(--sply-border-hover);
+}
+
+.layer-toggle-btn.active {
+  border-color: var(--sply-primary);
+  color: var(--sply-primary);
+  background: rgba(var(--sply-primary-rgb), 0.1);
+}
+
+/* --- Safe vs Fastest Route Switcher --- */
+.route-selector-box {
+  margin-top: 12px;
+  padding: 10px;
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+}
+
+.route-selector-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--sply-text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.route-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.route-option-card {
+  padding: 8px;
+  border-radius: var(--sply-radius);
+  border: 1px solid var(--sply-border);
+  background: var(--sply-surface);
+  text-align: left;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.route-option-card:hover {
+  border-color: var(--sply-border-hover);
+}
+
+.route-option-card.active {
+  border-color: var(--sply-primary);
+  background: rgba(var(--sply-primary-rgb), 0.12);
+}
+
+.route-option-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--sply-text);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.route-option-stat {
+  font-size: 0.72rem;
+  color: var(--sply-text-muted);
+  margin-top: 2px;
+}
+
+.route-safety-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.badge-safe {
+  background: rgba(57, 255, 20, 0.2);
+  color: #39ff14;
+}
+
+.badge-warning {
+  background: rgba(255, 230, 0, 0.2);
+  color: #ffe600;
+}
+
+/* ==========================================================================
+   HUD Right: Local Legend AI Assistant & "Walk with Me" Escort
+   ========================================================================== */
+.hud-panel-right {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 380px;
+  max-height: calc(100% - 100px);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+/* AI Assistant Drawer Card */
+.ai-assistant-card {
+  background: var(--sply-surface);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+  box-shadow: var(--sply-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.ai-header {
+  padding: 12px 16px;
+  background: var(--sply-bg-subtle);
+  border-bottom: 1px solid var(--sply-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ai-persona-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--sply-radius);
+  background: linear-gradient(135deg, var(--sply-primary), var(--sply-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: var(--sply-glow);
+}
+
+.ai-meta h3 {
+  font-size: 0.92rem;
+  font-family: var(--sply-font-heading);
+  font-weight: 700;
+  color: var(--sply-text);
+}
+
+.ai-meta span {
+  font-size: 0.72rem;
+  color: var(--sply-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* AI Chat Message Flow */
+.ai-chat-body {
+  padding: 14px;
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ai-msg {
+  padding: 10px 13px;
+  border-radius: var(--sply-radius);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  animation: fadeIn 200ms ease;
+}
+
+.ai-msg-bot {
+  background: var(--sply-surface-card);
+  border: 1px solid var(--sply-border);
+  color: var(--sply-text);
+  border-left: 3px solid var(--sply-primary);
+}
+
+.ai-msg-user {
+  background: rgba(var(--sply-primary-rgb), 0.15);
+  border: 1px solid var(--sply-primary);
+  color: var(--sply-text);
+  align-self: flex-end;
+  border-radius: var(--sply-radius) var(--sply-radius) 0 var(--sply-radius);
+}
+
+/* AI Quick Query Chips */
+.ai-quick-prompts {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 0 14px 10px 14px;
+  scrollbar-width: none;
+}
+
+.ai-quick-prompts::-webkit-scrollbar {
+  display: none;
+}
+
+.ai-chip-prompt {
+  white-space: nowrap;
+  padding: 5px 10px;
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius-pill);
+  font-size: 0.72rem;
+  color: var(--sply-text-muted);
+}
+
+.ai-chip-prompt:hover {
+  border-color: var(--sply-primary);
+  color: var(--sply-primary);
+}
+
+/* AI Chat Input */
+.ai-chat-input-bar {
+  display: flex;
+  padding: 10px 14px;
+  background: var(--sply-bg-subtle);
+  border-top: 1px solid var(--sply-border);
+  gap: 8px;
+}
+
+.ai-chat-input-bar input {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  color: var(--sply-text);
+}
+
+.ai-chat-input-bar input:focus {
+  border-color: var(--sply-primary);
+  outline: none;
+}
+
+.ai-send-btn {
+  padding: 0 14px;
+  background: var(--sply-primary);
+  color: #0b0c10;
+  border-radius: var(--sply-radius);
+  font-weight: 700;
+  box-shadow: var(--sply-glow);
+}
+
+body.theme-aesthetic .ai-send-btn,
+body.theme-minimalist .ai-send-btn {
+  color: #ffffff;
+}
+
+/* "Walk with Me" Active Escort Widget */
+.escort-widget {
+  background: var(--sply-surface);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+  padding: 14px;
+  box-shadow: var(--sply-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.escort-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.escort-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(57, 255, 20, 0.15);
+  border: 1px solid #39ff14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #39ff14;
+}
+
+.escort-icon.active-pulse {
+  animation: radarPulse 1.8s infinite;
+}
+
+.escort-text h4 {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--sply-text);
+}
+
+.escort-text p {
+  font-size: 0.72rem;
+  color: var(--sply-text-muted);
+}
+
+/* ==========================================================================
+   HUD Bottom Floating Bar: Quick Verdict & Surprise Me
+   ========================================================================== */
+.hud-bottom-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--sply-surface);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius-pill);
+  padding: 8px 18px;
+  box-shadow: var(--sply-shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.hud-city-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--sply-text-muted);
+}
+
+.hud-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--sply-font-mono);
+}
+
+.pill-green {
+  background: rgba(57, 255, 20, 0.15);
+  color: #39ff14;
+}
+
+.pill-blue {
+  background: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+}
+
+.hud-separator {
+  width: 1px;
+  height: 20px;
+  background: var(--sply-border);
+}
+
+/* Surprise Me Button */
+.surprise-me-btn {
+  background: linear-gradient(135deg, var(--sply-primary), var(--sply-secondary));
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: var(--sply-radius-pill);
+  font-weight: 700;
+  font-size: 0.84rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--sply-glow);
+}
+
+.surprise-me-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.15);
+}
+
+/* ==========================================================================
+   Modals & Drawers
+   ========================================================================== */
+.sply-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.sply-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sply-modal {
+  width: 440px;
+  max-width: 90vw;
+  background: var(--sply-surface);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+  box-shadow: var(--sply-shadow);
+  padding: 24px;
+  transform: scale(0.95);
+  transition: transform 200ms ease;
+  position: relative;
+}
+
+.sply-modal-backdrop.open .sply-modal {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  color: var(--sply-text-muted);
+  font-size: 1.25rem;
+}
+
+.modal-close-btn:hover {
+  color: var(--sply-text);
+}
+
+/* Auth Modal Styles */
+.auth-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-header h2 {
+  font-size: 1.4rem;
+  font-family: var(--sply-font-heading);
+  color: var(--sply-text);
+}
+
+.auth-header p {
+  color: var(--sply-text-muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.google-auth-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px;
+  background: #ffffff;
+  color: #3c4043;
+  border-radius: var(--sply-radius);
+  font-weight: 600;
+  font-size: 0.92rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 16px;
+  transition: background 150ms ease;
+}
+
+.google-auth-btn:hover {
+  background: #f8f9fa;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.google-icon-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  color: var(--sply-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--sply-border);
+}
+
+.auth-divider span {
+  padding: 0 10px;
+}
+
+.auth-input-group {
+  margin-bottom: 14px;
+}
+
+.auth-input-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--sply-text-muted);
+  margin-bottom: 5px;
+}
+
+.auth-input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+  color: var(--sply-text);
+  font-size: 0.9rem;
+}
+
+.auth-input-group input:focus {
+  border-color: var(--sply-primary);
+  outline: none;
+}
+
+/* Venue Detail Slide-Out Card */
+.venue-detail-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  background: var(--sply-surface);
+  border-top: 2px solid var(--sply-primary);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+  padding: 20px 24px;
+  transform: translateY(110%);
+  transition: transform 250ms cubic-bezier(0.2, 0.9, 0.3, 1);
+  display: flex;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: var(--sply-radius) var(--sply-radius) 0 0;
+}
+
+.venue-detail-sheet.open {
+  transform: translateY(0);
+}
+
+.sheet-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: transparent;
+  color: var(--sply-text-muted);
+  font-size: 1.25rem;
+}
+
+.sheet-close-btn:hover {
+  color: var(--sply-text);
+}
+
+.sheet-main {
+  flex: 1;
+}
+
+.sheet-header-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.sheet-header-line h2 {
+  font-size: 1.35rem;
+  font-family: var(--sply-font-heading);
+  color: var(--sply-text);
+}
+
+.sheet-status-tag {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.status-open {
+  background: rgba(57, 255, 20, 0.2);
+  color: #39ff14;
+}
+
+.status-closing {
+  background: rgba(255, 230, 0, 0.2);
+  color: #ffe600;
+}
+
+.sheet-vibe-quote {
+  font-size: 0.88rem;
+  color: var(--sply-text-muted);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+/* 5-Factor Score Radar / Bar Matrix */
+.radar-bars-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.radar-bar-item {
+  background: var(--sply-bg-subtle);
+  border: 1px solid var(--sply-border);
+  border-radius: var(--sply-radius);
+  padding: 8px;
+  text-align: center;
+}
+
+.radar-bar-val {
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: var(--sply-font-mono);
+  color: var(--sply-primary);
+}
+
+.radar-bar-name {
+  font-size: 0.68rem;
+  color: var(--sply-text-muted);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* ==========================================================================
+   Leaflet Custom Markers & Popups
+   ========================================================================== */
+.sply-custom-pin {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  transition: transform 150ms ease;
+}
+
+.sply-custom-pin:hover {
+  transform: scale(1.25) translateY(-4px);
+  z-index: 1000 !important;
+}
+
+.pin-food {
+  background: linear-gradient(135deg, #ff9f43, #ee5253);
+}
+
+.pin-hidden {
+  background: linear-gradient(135deg, #a55eea, #45aaf2);
+}
+
+.pin-heritage {
+  background: linear-gradient(135deg, #f368e0, #ff9ff3);
+}
+
+.pin-safety {
+  background: linear-gradient(135deg, #10ac84, #1dd1a1);
+}
+
+.pin-hazard {
+  background: #eb4d4b;
+  border-color: #ffeaa7;
+  animation: hazardPulse 1.2s infinite;
+}
+
+/* Theme Pin Transformations */
+body.theme-gaming .sply-custom-pin {
+  border-radius: 4px;
+  border-color: #39ff14;
+  box-shadow: 0 0 10px #39ff14;
+}
+
+body.theme-minimalist .sply-custom-pin {
+  border-radius: 0;
+  border: 2px solid #000000;
+  background: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+body.theme-cyberpunk .sply-custom-pin {
+  border-radius: 2px;
+  border-color: #00f5ff;
+  box-shadow: 0 0 12px #00f5ff;
+}
+
+/* Custom Popup */
+.leaflet-popup-content-wrapper {
+  background: var(--sply-surface) !important;
+  color: var(--sply-text) !important;
+  border: 1px solid var(--sply-border) !important;
+  border-radius: var(--sply-radius) !important;
+  box-shadow: var(--sply-shadow) !important;
+  padding: 4px;
+}
+
+.leaflet-popup-tip {
+  background: var(--sply-surface) !important;
+}
+
+/* ==========================================================================
+   Mapbox GL Custom Markers, Controls & Popups
+   ========================================================================== */
+.mapboxgl-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+}
+
+.mapboxgl-ctrl-top-right {
+  top: 14px;
+  right: 14px;
+}
+
+.mapboxgl-ctrl-group {
+  background: var(--sply-surface) !important;
+  border: 1px solid var(--sply-border) !important;
+  border-radius: var(--sply-radius) !important;
+  box-shadow: var(--sply-shadow) !important;
+}
+
+.mapboxgl-ctrl-group button {
+  border-bottom: 1px solid var(--sply-border) !important;
+}
+
+.mapboxgl-ctrl-group button:last-child {
+  border-bottom: none !important;
+}
+
+.mapboxgl-ctrl-icon {
+  filter: invert(100%);
+}
+
+body.theme-aesthetic .mapboxgl-ctrl-icon,
+body.theme-minimalist .mapboxgl-ctrl-icon {
+  filter: none;
+}
+
+.mapboxgl-popup-content {
+  background: var(--sply-surface) !important;
+  color: var(--sply-text) !important;
+  border: 1px solid var(--sply-border) !important;
+  border-radius: var(--sply-radius) !important;
+  box-shadow: var(--sply-shadow) !important;
+  padding: 10px 14px !important;
+  font-family: var(--sply-font-body);
+}
+
+.mapboxgl-popup-tip {
+  border-top-color: var(--sply-surface) !important;
+  border-bottom-color: var(--sply-surface) !important;
+}
+
+.mapbox-token-notice {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 22, 32, 0.92);
+  color: #f0f6fc;
+  border: 1px solid rgba(255, 170, 0, 0.6);
+  padding: 8px 16px;
+  border-radius: var(--sply-radius);
+  font-size: 0.76rem;
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Keyframe Animations
+   ========================================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes radarPulse {
+  0% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); }
+  70% { box-shadow: 0 0 0 14px rgba(57, 255, 20, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0); }
+}
+
+@keyframes hazardPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.18); box-shadow: 0 0 15px #eb4d4b; }
+  100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 900px) {
+  .sply-header {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  .sply-theme-bar {
+    order: 3;
+    width: 100%;
+    justify-content: space-around;
+    overflow-x: auto;
+  }
+  .hud-panel-left {
+    width: calc(100% - 28px);
+    left: 14px;
+    top: 14px;
+    max-height: 48%;
+  }
+  .hud-panel-right {
+    display: none; /* Collapsed on mobile, triggered via float icon */
+  }
+  .hud-bottom-bar {
+    width: 92%;
+    flex-wrap: wrap;
+    justify-content: center;
+    bottom: 12px;
+  }
+  .radar-bars-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

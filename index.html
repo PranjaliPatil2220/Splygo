@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplyGo — Exploring, Experiencing & Navigating the Chaos We Call Home</title>
+  <meta name="description" content="Intelligent urban companion with 5-theme adaptive engine, real-time safety heatmap, hidden gem radar, Mapbox cartography, and Google authentication.">
+
+  <!-- Google Fonts for All 5 Themes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Roboto:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Mapbox GL JS CSS (v3.2.0) -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+
+  <!-- Leaflet CSS Fallback -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- SplyGo Design System Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google Identity Services (GSI) Client SDK -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="theme-gaming">
+
+  <div class="sply-app">
+    <!-- ====================================================================
+         TOP HEADER BAR
+         ==================================================================== -->
+    <header class="sply-header">
+      <div class="sply-brand">
+        <div class="sply-logo-badge">SG</div>
+        <div class="sply-brand-text">
+          <h1>Sply<span>Go</span></h1>
+          <p>Exploring, Experiencing & Navigating the Chaos We Call Home</p>
+        </div>
+      </div>
+
+      <!-- 5-Theme Hot-Swapper Bar -->
+      <nav class="sply-theme-bar" aria-label="Theme Selector">
+        <button class="theme-pill-btn active" data-theme="gaming" id="themeBtnGaming">
+          <span class="pill-icon">🎮</span> Gaming
+        </button>
+        <button class="theme-pill-btn" data-theme="aesthetic" id="themeBtnAesthetic">
+          <span class="pill-icon">🎀</span> Aesthetic
+        </button>
+        <button class="theme-pill-btn" data-theme="minimalist" id="themeBtnMinimalist">
+          <span class="pill-icon">🤍</span> Minimalist
+        </button>
+        <button class="theme-pill-btn" data-theme="professional" id="themeBtnProfessional">
+          <span class="pill-icon">💼</span> Professional
+        </button>
+        <button class="theme-pill-btn" data-theme="cyberpunk" id="themeBtnCyberpunk">
+          <span class="pill-icon">⚡</span> Cyberpunk
+        </button>
+      </nav>
+
+      <!-- Header Actions: Weather Pulse + Report Hazard + User Auth Pill -->
+      <div class="sply-header-actions">
+        <!-- Live Weather API Display (OpenWeatherMap) -->
+        <div class="sply-weather-badge" id="headerWeatherBadge" title="Live Weather Pulse via OpenWeatherMap">
+          <span id="weatherIcon" class="weather-icon">☀️</span>
+          <span id="weatherText">72°F Sunny</span>
+        </div>
+
+        <button class="sply-btn sply-btn-secondary" id="reportIncidentBtn" title="Report a broken streetlight or hazard">
+          <span>⚠️</span> Report Hazard
+        </button>
+
+        <div class="sply-user-pill" id="userProfilePill" title="Account & Authentication">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         MAIN VIEWPORT: MAP (MAPBOX GL / GIS) & FLOATING HUD
+         ==================================================================== -->
+    <main class="sply-viewport">
+      <!-- Background Map Container (Mapbox GL or Leaflet Fallback) -->
+      <div id="map"></div>
+
+      <!-- Cyber Grid Overlay for Gaming / Cyberpunk Themes -->
+      <div class="map-grid-overlay"></div>
+
+      <!-- --- HUD LEFT PANEL: Search, Categories, Budget & Routes --- -->
+      <aside class="hud-panel-left">
+        <div class="hud-card">
+          <!-- Quick Search -->
+          <div class="hud-search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="hudSearchInput" placeholder="Search 2 AM eats, hidden gems, trails...">
+          </div>
+
+          <!-- Category Chips -->
+          <div class="hud-category-chips">
+            <button class="cat-chip active" data-cat="all">All Spots</button>
+            <button class="cat-chip" data-cat="food">🌮 2 AM Eats</button>
+            <button class="cat-chip" data-cat="hidden">🍸 Hidden Gems</button>
+            <button class="cat-chip" data-cat="heritage">🏛️ Heritage</button>
+            <button class="cat-chip" data-cat="safety">⚠️ Hazards</button>
+          </div>
+
+          <!-- Budget vs. Luxury Dynamic Slider -->
+          <div class="hud-slider-group">
+            <div class="slider-label-row">
+              <span>Budget Spectrum:</span>
+              <span class="budget-val-badge" id="budgetValueBadge">$$$$$ (All)</span>
+            </div>
+            <input type="range" id="budgetSlider" class="sply-range-slider" min="1" max="5" value="5" step="1">
+          </div>
+
+          <!-- Layer Toggles -->
+          <div class="hud-toggles">
+            <button class="layer-toggle-btn active" id="toggleHeatmapBtn">
+              <span>🛡️</span> Safety Heatmap
+            </button>
+            <button class="layer-toggle-btn active" id="toggleFoodRadarBtn">
+              <span>📡</span> Live Radar
+            </button>
+          </div>
+
+          <!-- Safe vs Fastest Route Comparison -->
+          <div class="route-selector-box">
+            <div class="route-selector-title">
+              <span>Active Waypoint Navigation</span>
+              <span style="color:var(--sply-primary); font-weight:700;">LIVE</span>
+            </div>
+            <div class="route-options-grid">
+              <div class="route-option-card active" id="routeSafeCard">
+                <div class="route-option-name"><span>🛡️</span> Safest Route</div>
+                <div class="route-option-stat">16 min • 1.2 km</div>
+                <span class="route-safety-badge badge-safe">96% Safe • Lit</span>
+              </div>
+              <div class="route-option-card" id="routeFastCard">
+                <div class="route-option-name"><span>⚡</span> Fastest Direct</div>
+                <div class="route-option-stat">11 min • 0.9 km</div>
+                <span class="route-safety-badge badge-warning">68% Safe • Dark</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- --- HUD RIGHT PANEL: Local Legend AI Assistant & Walk with Me --- -->
+      <aside class="hud-panel-right">
+        <!-- AI Assistant Drawer Card -->
+        <div class="ai-assistant-card">
+          <div class="ai-header">
+            <div class="ai-persona-info">
+              <div class="ai-avatar" id="aiAvatar">⚔️</div>
+              <div class="ai-meta">
+                <h3 id="aiPersonaName">Game Master</h3>
+                <span id="aiPersonaSubtitle">Dungeon Master Mode</span>
+              </div>
+            </div>
+            <span style="font-size:0.75rem; color:var(--sply-text-muted);">Local Legend AI</span>
+          </div>
+
+          <div class="ai-chat-body" id="aiChatBody">
+            <!-- Messages rendered dynamically -->
+          </div>
+
+          <!-- Quick Query Chips -->
+          <div class="ai-quick-prompts">
+            <button class="ai-chip-prompt" data-prompt="Where can I eat right now?">🌮 Best Late Eats</button>
+            <button class="ai-chip-prompt" data-prompt="Is it safe to walk through Kenmare?">🛡️ Route Safety</button>
+            <button class="ai-chip-prompt" data-prompt="Surprise me with an itinerary!">🎲 Surprise Me</button>
+          </div>
+
+          <!-- Chat Input -->
+          <div class="ai-chat-input-bar">
+            <input type="text" id="aiChatInput" placeholder="Ask your urban guide...">
+            <button class="ai-send-btn" id="aiSendBtn">Send</button>
+          </div>
+        </div>
+
+        <!-- "Walk with Me" Active Escort Widget -->
+        <div class="escort-widget">
+          <div class="escort-info">
+            <div class="escort-icon" id="escortPulseIcon">🛡️</div>
+            <div class="escort-text">
+              <h4>"Walk with Me" Escort</h4>
+              <p id="escortStatusText">Standby mode</p>
+            </div>
+          </div>
+          <button class="sply-btn sply-btn-primary" id="toggleEscortBtn">Arm Escort</button>
+        </div>
+      </aside>
+
+      <!-- --- HUD BOTTOM BAR: City Telemetry & Surprise Me --- -->
+      <footer class="hud-bottom-bar">
+        <div class="hud-city-stat">
+          <span>Metropolitan Safety:</span>
+          <span class="hud-stat-pill pill-green">94% OPTIMAL</span>
+        </div>
+        <div class="hud-separator"></div>
+        <div class="hud-city-stat">
+          <span>Transit Pulse:</span>
+          <span class="hud-stat-pill pill-blue">LOW CONGESTION</span>
+        </div>
+        <div class="hud-separator"></div>
+        <button class="surprise-me-btn" id="surpriseMeBtn">
+          <span>🎲</span> "Surprise Me" Itinerary
+        </button>
+      </footer>
+
+      <!-- --- VENUE DETAIL SLIDE-OUT SHEET --- -->
+      <div class="venue-detail-sheet" id="venueDetailSheet">
+        <button class="sheet-close-btn" onclick="closeVenueDetails()">✕</button>
+        <div class="sheet-main">
+          <div class="sheet-header-line">
+            <h2 id="sheetVenueName">Venue Name</h2>
+            <span class="sheet-status-tag" id="sheetStatus">Open</span>
+          </div>
+          <div style="font-size:0.8rem; color:var(--sply-primary); font-weight:700; margin-bottom:4px;" id="sheetCategory">Category • $$</div>
+          <p class="sheet-vibe-quote" id="sheetQuote">"Vibe check quote goes here..."</p>
+          <p style="font-size:0.78rem; color:var(--sply-text-muted); margin-bottom:10px;" id="sheetAddress">Address</p>
+
+          <!-- 5-Factor Score Radar / Bar Matrix -->
+          <div class="radar-bars-grid">
+            <div class="radar-bar-item">
+              <div class="radar-bar-val" id="scoreSafety">92%</div>
+              <div class="radar-bar-name">Safety</div>
+            </div>
+            <div class="radar-bar-item">
+              <div class="radar-bar-val" id="scoreCleanliness">95%</div>
+              <div class="radar-bar-name">Cleanliness</div>
+            </div>
+            <div class="radar-bar-item">
+              <div class="radar-bar-val" id="scoreValue">88%</div>
+              <div class="radar-bar-name">Value</div>
+            </div>
+            <div class="radar-bar-item">
+              <div class="radar-bar-val" id="scoreAccessibility">90%</div>
+              <div class="radar-bar-name">Access</div>
+            </div>
+            <div class="radar-bar-item">
+              <div class="radar-bar-val" id="scoreVibe">96%</div>
+              <div class="radar-bar-name">Vibe</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:14px;">
+            <button class="sply-btn sply-btn-primary" onclick="setActiveRoute('safe'); closeVenueDetails(); showToast('Navigating along Safest Illuminated Corridor!');">
+              <span>🛡️</span> Navigate Safest Route
+            </button>
+            <button class="sply-btn sply-btn-secondary" onclick="closeVenueDetails();">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ====================================================================
+         MODALS
+         ==================================================================== -->
+
+    <!-- 1. Google Authentication & Account Modal -->
+    <div class="sply-modal-backdrop" id="authModal">
+      <div class="sply-modal">
+        <button class="modal-close-btn" onclick="closeModal('authModal')">✕</button>
+
+        <!-- View 1: When Logged Out -->
+        <div id="authLoggedOutView">
+          <div class="auth-header">
+            <h2>Welcome to SplyGo</h2>
+            <p>Sync your 5-theme preferences, emergency contacts & saved spots.</p>
+          </div>
+
+          <!-- Official Google Identity Services Render Container -->
+          <div id="gsiButtonContainer" style="display:flex; justify-content:center; margin-bottom: 12px; min-height: 44px;"></div>
+
+          <!-- Fallback / Interactive Google Sign-In Button -->
+          <button class="google-auth-btn" id="googleAuthBtn">
+            <svg class="google-icon-svg" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            Sign in with Google
+          </button>
+
+          <div class="auth-divider">
+            <span>or sign in with email</span>
+          </div>
+
+          <form id="emailAuthForm">
+            <div class="auth-input-group">
+              <label for="authEmail">Email Address</label>
+              <input type="email" id="authEmail" required placeholder="alex@urbanexplorer.com">
+            </div>
+            <div class="auth-input-group">
+              <label for="authPassword">Password</label>
+              <input type="password" id="authPassword" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="sply-btn sply-btn-primary" style="width:100%; margin-top:8px;">
+              Sign In with Email
+            </button>
+          </form>
+
+          <p style="text-align:center; font-size:0.75rem; color:var(--sply-text-muted); margin-top:16px;">
+            By signing in, you accept SplyGo Community Safety Standards & Terms.
+          </p>
+        </div>
+
+        <!-- View 2: When Logged In -->
+        <div id="authLoggedInView" style="display:none;">
+          <div class="auth-header">
+            <h2>Your Profile</h2>
+            <p id="profileMethodBadge">Authenticated via Google OAuth 2.0</p>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:16px; margin:20px 0; padding:16px; background:var(--sply-bg-subtle); border-radius:var(--sply-radius); border:1px solid var(--sply-border);">
+            <img src="" alt="Avatar" id="profileAvatarImg" style="width:54px; height:54px; border-radius:50%; border:2px solid var(--sply-primary); object-fit: cover;">
+            <div>
+              <h3 id="profileNameText" style="font-size:1.1rem; color:var(--sply-text);">Alex Rivera</h3>
+              <p id="profileEmailText" style="font-size:0.8rem; color:var(--sply-text-muted);">alex@splygo.com</p>
+              <div style="display:flex; gap:8px; margin-top:6px;">
+                <span class="route-safety-badge badge-safe">Explorer Level 14</span>
+                <span class="route-safety-badge badge-safe">Safety Score: 99%</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="sply-btn sply-btn-secondary" onclick="closeModal('authModal'); showToast('Preferences & emergency contacts synchronized.');">
+              Sync Account Across Devices
+            </button>
+            <button class="sply-btn sply-btn-danger" id="signOutBtn">
+              Sign Out of SplyGo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. One-Tap Citizen Incident Reporting Modal -->
+    <div class="sply-modal-backdrop" id="incidentModal">
+      <div class="sply-modal">
+        <button class="modal-close-btn" onclick="closeModal('incidentModal')">✕</button>
+        <div class="auth-header">
+          <h2>Report Safety Hazard</h2>
+          <p>Protect fellow explorers by logging real-time street conditions.</p>
+        </div>
+
+        <form id="incidentForm">
+          <div class="auth-input-group">
+            <label for="incidentType">Incident Category</label>
+            <select id="incidentType" style="width:100%; padding:10px; background:var(--sply-bg-subtle); border:1px solid var(--sply-border); border-radius:var(--sply-radius); color:var(--sply-text);">
+              <option value="Unlit Dark Alleyway">💡 Unlit Dark Alleyway / Broken Light</option>
+              <option value="Street Harassment">⚠️ Street Harassment / Suspicious Activity</option>
+              <option value="Physical Hazard / Construction">🚧 Physical Hazard / Open Trench</option>
+              <option value="Transit Congestion">🚇 Transit Disruption / Crowd Crush</option>
+            </select>
+          </div>
+
+          <div class="auth-input-group">
+            <label>Location Coordinates</label>
+            <p style="font-size:0.8rem; color:var(--sply-text-muted);">Current Map Center: Lower Manhattan / Soho</p>
+          </div>
+
+          <div class="auth-input-group">
+            <label>Optional Photo Verification</label>
+            <input type="file" accept="image/*" style="font-size:0.8rem;">
+          </div>
+
+          <button type="submit" class="sply-btn sply-btn-primary" style="width:100%; margin-top:12px;">
+            Submit Report to Community Map
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 3. "Walk with Me" Active Escort Confirmation Modal -->
+    <div class="sply-modal-backdrop" id="escortCheckinModal">
+      <div class="sply-modal" style="text-align:center;">
+        <div style="font-size:3rem; margin-bottom:10px;">🛡️</div>
+        <h2 style="font-size:1.4rem; color:var(--sply-text); margin-bottom:8px;">Safety Check-in Required</h2>
+        <p style="color:var(--sply-text-muted); font-size:0.9rem; margin-bottom:20px;">
+          "Walk with Me" timed interval reached. Please confirm you are safe. If no response, emergency contacts will receive your live GPS coordinate in 30 seconds.
+        </p>
+
+        <button class="sply-btn sply-btn-primary" id="confirmSafeBtn" style="width:100%; padding:14px; font-size:1rem; margin-bottom:10px;">
+          ✓ I Am Safe
+        </button>
+        <button class="sply-btn sply-btn-danger" style="width:100%;" onclick="closeModal('escortCheckinModal'); showToast('🚨 SIMULATION: Emergency SMS dispatched to contacts with live GPS track URL.');">
+          Simulate Emergency Escalation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mapbox GL JS Library (v3.2.0) -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+
+  <!-- Leaflet GIS Fallback Library -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- SplyGo Main Application Controller -->
+  <script src="app.js"></script>
+</body>
+</html>
